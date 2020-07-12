@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Nas voltas que o mundo dá</h1>
+
+  <h3>Lista de artigos disponíveis</h3>
+  <% @articles.each do |article| %>
+    <ul>
+      <div class="card-show">
+        <%= link_to article_path(article) do %>
+          <li><%= article.city %> - <%= article.year %></li>
+        <% end %>
+      </div>
+      <div class="card-footer-actions">
+        <%= link_to edit_article_path(article) do %>
+          <i class="fas fa-pencil-alt"></i>
+        <% end %>
+        <%= link_to article_path(article), method: :delete, data: {confirm: "Certeza que você quer retirar esse artido do blog?"} do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+    </ul>
+  <% end %>
+
+  <%= link_to "Acrescentar um artigo", new_article_path, class: "btn btn-primary m-5" %>
+</div>

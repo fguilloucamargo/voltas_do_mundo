@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Mudar o artigo sobre <%= @article.city %></h1>
+  <%= simple_form_for @article do |f| %>
+    <%= f.input :title, label: "Titulo" %>
+    <%= f.input :city, label: "Cidade" %>
+    <%= f.input :month, label: "Mês", collection: 1..12 %>
+    <%= f.input :year, label: "Ano" %>
+    <%= f.input :text, label: "Texto", :input_html => { :cols => 5, :rows => 15 } %>
+    <%= f.input :photos, as: :file %>
+    <%= f.input :photos, as: :file %>
+    <%= f.input :photos, as: :file %>
+    <%= f.input :photos, as: :file %>
+    <%= f.input :photos, as: :file %>
+    <%= f.button :submit, "Atualizar artigo", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+
+

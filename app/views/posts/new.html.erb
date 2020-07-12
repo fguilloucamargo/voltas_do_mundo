@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Criar um novo post</h1>
+  <%= simple_form_for [@article, @post] do |f| %>
+  <%= f.input :title, label: "Titulo" %>
+  <%= f.input :text, label: "Texto", :input_html => { :cols => 5, :rows => 15 } %>
+  <%= f.input :photo, as: :file %>
+  <%= f.button :submit, "Enviar post" %>
+<% end %>
+</div>

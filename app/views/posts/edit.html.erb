@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Atualizar o post</h1>
+  <%= simple_form_for [@article, @post] do |f| %>
+    <%= f.input :title, label: "Titulo" %>
+    <%= f.input :text, label: "Texto", :input_html => { :cols => 5, :rows => 15 } %>
+    <%= f.input :photos, as: :file %>
+    <%= f.button :submit, "Atualizar artigo", class: "btn btn-primary" %>
+  <% end %>
+</div>
+

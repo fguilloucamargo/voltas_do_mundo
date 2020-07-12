@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Criar um novo artigo</h1>
+  <%= simple_form_for @article do |f| %>
+  <%= f.input :city, label: "Cidade" %>
+  <%= f.input :month, label: "Mês", collection: 1..12 %>
+  <%= f.input :year, label: "Ano" %>
+  <%= f.button :submit, "Criar o artigo" %>
+<% end %>
+</div>
+
+
+
