@@ -8,9 +8,9 @@
       <% @posts.each do |post| %>
         <% if post.photo.attached? && post.text == ""%>
           <div class="card">
-            <%= cl_image_tag post.user.photo.key, gravity: "face", height: 50, width: 50, crop: "lfill", class: "avatar-large"%>
+            <img class="card-img-top" src="<%= cl_image_path post.photo.key, :quality=>"auto:eco" %>" alt="Card image cap">
             <div class="card-footer">
-              <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+              <%= cl_image_tag post.user.photo.key, gravity: "face", height: 50, width: 50, crop: "lfill", class: "avatar-large"%>
               <div class="notification-content">
                 <p><small><%= post.created_at.strftime("%d/%m/%Y") %></small></p>
                 <p><%= post.user.nickname %></p>
@@ -25,25 +25,24 @@
                 <% end %>
               </div>
             </div>
-          </div>
         <% elsif !post.photo.attached? %>
           <div class="card">
             <blockquote class="blockquote mb-0 card-body">
               <p><%= post.text %></p>
               <div class="card-footer">
                 <%= cl_image_tag post.user.photo.key, gravity: "face", height: 50, width: 50, crop: "lfill", class: "avatar-large"%>
-              <div class="notification-content">
-                <p><small><%= post.created_at.strftime("%d/%m/%Y") %></small></p>
-                <p><%= post.user.nickname %></p>
-              </div>
+                <div class="notification-content">
+                  <p><small><%= post.created_at.strftime("%d/%m/%Y") %></small></p>
+                  <p><%= post.user.nickname %></p>
+                </div>
 
-              <div class="card-footer-actions">
-                <%= link_to edit_article_post_path(@article, post) do %>
-                  <i class="fas fa-pencil-alt"></i>
-                <% end %>
-                <%= link_to article_post_path(@article, post), method: :delete do %>
-                  <i class="fas fa-trash-alt"></i>
-                <% end %>
+                <div class="card-footer-actions">
+                  <%= link_to edit_article_post_path(@article, post) do %>
+                    <i class="fas fa-pencil-alt"></i>
+                  <% end %>
+                  <%= link_to article_post_path(@article, post), method: :delete do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
               </div>
             </div>
             </blockquote>
