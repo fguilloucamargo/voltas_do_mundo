@@ -16,14 +16,16 @@
                 <p><%= post.user.nickname %></p>
               </div>
 
-              <div class="card-footer-actions">
-                <%= link_to edit_article_post_path(@article, post) do %>
-                  <i class="fas fa-pencil-alt"></i>
-                <% end %>
-                <%= link_to article_post_path(@article, post), method: :delete do %>
-                  <i class="fas fa-trash-alt"></i>
-                <% end %>
-              </div>
+              <% if current_user == post.user %>
+                <div class="card-footer-actions">
+                  <%= link_to edit_article_post_path(@article, post) do %>
+                    <i class="fas fa-pencil-alt"></i>
+                  <% end %>
+                  <%= link_to article_post_path(@article, post), method: :delete do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
+                </div>
+              <% end %>
             </div>
         <% elsif !post.photo.attached? %>
           <div class="card">
@@ -35,15 +37,16 @@
                   <p><small><%= post.created_at.strftime("%d/%m/%Y") %></small></p>
                   <p><%= post.user.nickname %></p>
                 </div>
-
-                <div class="card-footer-actions">
-                  <%= link_to edit_article_post_path(@article, post) do %>
-                    <i class="fas fa-pencil-alt"></i>
-                  <% end %>
-                  <%= link_to article_post_path(@article, post), method: :delete do %>
-                    <i class="fas fa-trash-alt"></i>
-                  <% end %>
-              </div>
+                <% if current_user == post.user %>
+                  <div class="card-footer-actions">
+                    <%= link_to edit_article_post_path(@article, post) do %>
+                      <i class="fas fa-pencil-alt"></i>
+                    <% end %>
+                    <%= link_to article_post_path(@article, post), method: :delete do %>
+                      <i class="fas fa-trash-alt"></i>
+                    <% end %>
+                  </div>
+                <% end %>
             </div>
             </blockquote>
           </div>
@@ -61,15 +64,16 @@
                 <p><small><%= post.created_at.strftime("%d/%m/%Y") %></small></p>
                 <p><%= post.user.nickname %></p>
               </div>
-
-              <div class="card-footer-actions">
-                <%= link_to edit_article_post_path(@article, post) do %>
-                  <i class="fas fa-pencil-alt"></i>
-                <% end %>
-                <%= link_to article_post_path(@article, post), method: :delete do %>
-                  <i class="fas fa-trash-alt"></i>
-                <% end %>
-              </div>
+              <% if current_user == post.user %>
+                <div class="card-footer-actions">
+                  <%= link_to edit_article_post_path(@article, post) do %>
+                    <i class="fas fa-pencil-alt"></i>
+                  <% end %>
+                  <%= link_to article_post_path(@article, post), method: :delete do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
+                </div>
+              <% end %>
             </div>
           </div>
         <% end %>
