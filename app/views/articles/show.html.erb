@@ -28,27 +28,27 @@
               <% end %>
             </div>
         <% elsif !post.photo.attached? %>
-          <div class="card">
+          <div class="card ">
             <blockquote class="blockquote mb-0 card-body">
               <p><%= post.text %></p>
-              <div class="card-footer">
-                <%= cl_image_tag post.user.photo.key, gravity: "face", height: 50, width: 50, crop: "lfill", class: "avatar-large"%>
-                <div class="notification-content">
-                  <p><small><%= post.created_at.strftime("%d/%m/%Y") %></small></p>
-                  <p><%= post.user.nickname %></p>
-                </div>
-                <% if current_user == post.user %>
-                  <div class="card-footer-actions">
-                    <%= link_to edit_article_post_path(@article, post) do %>
-                      <i class="fas fa-pencil-alt"></i>
-                    <% end %>
-                    <%= link_to article_post_path(@article, post), method: :delete do %>
-                      <i class="fas fa-trash-alt"></i>
-                    <% end %>
-                  </div>
-                <% end %>
-            </div>
             </blockquote>
+            <div class="card-footer">
+              <%= cl_image_tag post.user.photo.key, gravity: "face", height: 50, width: 50, crop: "lfill", class: "avatar-large"%>
+              <div class="notification-content">
+                <p><small><%= post.created_at.strftime("%d/%m/%Y") %></small></p>
+                <p><%= post.user.nickname %></p>
+              </div>
+              <% if current_user == post.user %>
+                <div class="card-footer-actions">
+                  <%= link_to edit_article_post_path(@article, post) do %>
+                    <i class="fas fa-pencil-alt"></i>
+                  <% end %>
+                  <%= link_to article_post_path(@article, post), method: :delete do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
           </div>
         <% else %>
           <div class="card">
@@ -80,8 +80,9 @@
       <% end %>
     </div>
   <% end %>
-
-  <%= link_to "Adicionar um novo post", new_article_post_path(@article) %>
+  <% if user_signed_in? %>
+    <%= link_to "Adicionar um novo post", new_article_post_path(@article) %>
+  <% end %>
 </div>
 
 

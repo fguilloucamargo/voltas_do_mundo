@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 8px;
-  background: white;
+  background: transparent;
   padding: 8px 16px;
   // border: 1px solid rgb(235,235,235);
 }
@@ -48,4 +48,8 @@
 
 .card_show {
   display: flex;
+}
+
+.card-popup {
+  margin-top: 15px;
 }

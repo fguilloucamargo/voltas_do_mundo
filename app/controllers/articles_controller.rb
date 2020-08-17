@@ -4,6 +4,14 @@ class ArticlesController < ApplicationController
 
   def home
     @articles = Article.all
+
+    @markers = @articles.map do |article|
+      {
+        lat: article.geocode.first,
+        lng: article.geocode.last,
+        infoWindow: render_to_string(partial: "infowindow", locals: { article: article })
+      }
+    end
   end
 
   def show
