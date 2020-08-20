@@ -9,6 +9,7 @@ class ArticlesController < ApplicationController
       {
         lat: article.geocode.first,
         lng: article.geocode.last,
+        country: Geocoder.search(article.city).first.country,
         infoWindow: render_to_string(partial: "infowindow", locals: { article: article })
       }
     end

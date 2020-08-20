@@ -1,8 +1,10 @@
 class Article < ApplicationRecord
   has_many :posts
 
-  validates :city, presence: true
-
   geocoded_by :city
-  # after_validation :geocode
+  after_validation :geocode
+
+  validates :city, presence: true
+  validates :month, presence: true
+  validates :year, presence: true
 end
