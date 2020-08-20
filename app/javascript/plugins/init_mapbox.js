@@ -14,7 +14,7 @@ const initMapbox = () => {
     const markers = JSON.parse(mapElement.dataset.markers);
     markers.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
-      new mapboxgl.Marker( {color: '#db3a34', scale: 0.7})
+      new mapboxgl.Marker( {color: '#3d348b', scale: 0.7})
       .setLngLat([ marker.lng, marker.lat ])
       .setPopup(popup)
       .addTo(map);
@@ -24,7 +24,7 @@ const initMapbox = () => {
       .then((data) => {
         data.features.forEach (element => {
           if(element.properties.admin === marker.country) {
-            var colors = ['#F30867', '#20F872', '#89F2FD', '#DBF30E', '#C67900', '#D30501', '#b102ee', '#3700FF'];
+            var colors = ['#F30867', '#20F872', '#89F2FD', '#DBF30E', '#C67900', '#D30501', '#b102ee', '#3700FF', '#5405FF', '#059E47', '#039CA8', '#A8054C'];
 
             map.on('load', function() {
 
