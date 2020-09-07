@@ -3,7 +3,8 @@ import mapboxgl from 'mapbox-gl';
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
   var count = 0;
-  var colors = ['#2F5755', '#54C6BE', '#F7B15C', '#F65C51', '#E5243F'];
+  // var colors = ['#2F5755', '#54C6BE', '#F7B15C', '#F65C51', '#E5243F'];
+  var colors = ['#A364D9', '#ED657B', '#DB3839', '#F66320', '#F9A229', '#FECC30', '#B2C324', '#34BEB7', '#3FA5D8']
 
   if (mapElement) {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -16,7 +17,7 @@ const initMapbox = () => {
     const markers = JSON.parse(mapElement.dataset.markers);
     markers.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
-      new mapboxgl.Marker( {color: '#3d348b', scale: 0.7})
+      new mapboxgl.Marker( {color: '#3d348b', scale: 0.5})
       .setLngLat([ marker.lng, marker.lat ])
       .setPopup(popup)
       .addTo(map);
@@ -46,7 +47,7 @@ const initMapbox = () => {
               source: element.properties.admin,
               paint: {
                 'fill-color': colors[count],
-                'fill-opacity': 0.7
+                'fill-opacity': 0.9
                 }
             });
             map.moveLayer(element.properties.admin, 'country-label');
