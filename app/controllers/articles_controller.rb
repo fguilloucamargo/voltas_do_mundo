@@ -1,15 +1,17 @@
 class ArticlesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :show]
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :update, :destroy]
 
   def home
     @articles = Article.all
-
+    @countries = @articles.map do |article|
+      Geocoder.search(article.city).first.country
+    end
+    @countries.uniq!
     @markers = @articles.map do |article|
       {
         lat: article.geocode.first,
         lng: article.geocode.last,
-        country: Geocoder.search(article.city).first.country,
         infoWindow: render_to_string(partial: "infowindow", locals: { article: article })
       }
     end
@@ -32,9 +34,6 @@ class ArticlesController < ApplicationController
     else
       render :new
     end
-  end
-
-  def edit
   end
 
   def update

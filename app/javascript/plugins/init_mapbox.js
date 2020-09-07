@@ -18,39 +18,40 @@ const initMapbox = () => {
       .setLngLat([ marker.lng, marker.lat ])
       .setPopup(popup)
       .addTo(map);
-
-      fetch("https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson")
-      .then(reponse => reponse.json())
-      .then((data) => {
-        data.features.forEach (element => {
-          if(element.properties.admin === marker.country) {
-            var colors = ['#F30867', '#20F872', '#89F2FD', '#DBF30E', '#C67900', '#D30501', '#b102ee', '#3700FF', '#5405FF', '#059E47', '#039CA8', '#A8054C'];
-
-            map.on('load', function() {
-
-            map.addSource(marker.country, {
-              "type": "geojson",
-              "data": {
-                "type": "Feature",
-                "geometry": element.geometry
-              }
-            });
-
-            map.addLayer({
-              id: marker.country,
-              type: 'fill',
-              source: marker.country,
-              paint: {
-                'fill-color': colors[Math.floor(Math.random() * colors.length)],
-                'fill-opacity': 0.9
-                }
-            });
-
-          })
-          }
-        });
-      })
     });
+
+    fetch("https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson")
+    .then(reponse => reponse.json())
+    .then((data) => {
+      data.features.forEach (element => {
+        if(mapElement.dataset.country.includes(element.properties.admin)) {
+          console.log(element.properties.admin)
+          var colors = ['#2F5755', '#54C6BE', '#F7B15C', '#F65C51', '#E5243F'];
+
+          map.on('load', function() {
+
+          map.addSource(element.properties.admin, {
+            "type": "geojson",
+            "data": {
+              "type": "Feature",
+              "geometry": element.geometry
+            }
+          });
+
+          map.addLayer({
+            id: element.properties.admin,
+            type: 'fill',
+            source: element.properties.admin,
+            paint: {
+              'fill-color': colors[Math.floor(Math.random() * colors.length)],
+              'fill-opacity': 0.7
+              }
+          });
+
+        })
+        }
+      });
+    })
   };
 };
 
