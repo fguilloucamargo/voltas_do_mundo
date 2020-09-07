@@ -2,6 +2,8 @@ import mapboxgl from 'mapbox-gl';
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
+  var count = 0;
+  var colors = ['#2F5755', '#54C6BE', '#F7B15C', '#F65C51', '#E5243F'];
 
   if (mapElement) {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -25,31 +27,34 @@ const initMapbox = () => {
     .then((data) => {
       data.features.forEach (element => {
         if(mapElement.dataset.country.includes(element.properties.admin)) {
-          console.log(element.properties.admin)
-          var colors = ['#2F5755', '#54C6BE', '#F7B15C', '#F65C51', '#E5243F'];
-
           map.on('load', function() {
-
-          map.addSource(element.properties.admin, {
-            "type": "geojson",
-            "data": {
-              "type": "Feature",
-              "geometry": element.geometry
-            }
-          });
-
-          map.addLayer({
-            id: element.properties.admin,
-            type: 'fill',
-            source: element.properties.admin,
-            paint: {
-              'fill-color': colors[Math.floor(Math.random() * colors.length)],
-              'fill-opacity': 0.7
+          if(count < colors.length - 1) {
+            count = count + 1;
+          } else {
+            count = 0;
+          }
+            map.addSource(element.properties.admin, {
+              "type": "geojson",
+              "data": {
+                "type": "Feature",
+                "geometry": element.geometry
               }
-          });
-
-        })
-        }
+            });
+            map.addLayer({
+              id: element.properties.admin,
+              type: 'fill',
+              source: element.properties.admin,
+              paint: {
+                'fill-color': colors[count],
+                'fill-opacity': 0.7
+                }
+            });
+            map.moveLayer(element.properties.admin, 'country-label');
+            map.moveLayer(element.properties.admin, 'state-label');
+            map.moveLayer(element.properties.admin, 'settlement-major-label');
+            map.moveLayer(element.properties.admin, 'settlement-minor-label');
+          })
+        };
       });
     })
   };

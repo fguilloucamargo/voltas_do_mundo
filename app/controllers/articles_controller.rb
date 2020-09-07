@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :show]
+  skip_before_action :authenticate_user!, only: [:home, :show, :about]
   before_action :set_article, only: [:show, :update, :destroy]
 
   def home
@@ -48,6 +48,9 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     redirect_to root_path
+  end
+
+  def about
   end
 
   private

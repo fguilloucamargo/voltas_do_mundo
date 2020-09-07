@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :articles do
     resources :posts, only: [:new, :create, :edit, :update, :destroy]
   end
+
+  get 'about', to: 'articles#about'
 end
