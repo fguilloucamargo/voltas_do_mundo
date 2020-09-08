@@ -6,13 +6,20 @@
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
+  text-align: right;
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 30px;
 }
 
 .navbar h2 {
   color: $red;
   font-family: $headers-font;
+}
+
+@media(max-width: 768px) {
+  .navbar h2 {
+    font-size: 1em;
+  }
 }

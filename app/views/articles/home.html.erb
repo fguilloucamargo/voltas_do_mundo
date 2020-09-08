@@ -1,28 +1,4 @@
-<!-- <div class="container">
-  <h3>Lista de artigos disponíveis</h3>
-  <% @articles.each do |article| %>
-    <ul>
-      <div class="card-show">
-        <%= link_to article_path(article) do %>
-          <li><%= article.city %> - <%= article.year %></li>
-        <% end %>
-      </div>
-      <div class="card-footer-actions">
-        <%= link_to edit_article_path(article) do %>
-          <i class="fas fa-pencil-alt"></i>
-        <% end %>
-        <%= link_to article_path(article), method: :delete, data: {confirm: "Certeza que você quer retirar esse artido do blog?"} do %>
-          <i class="fas fa-trash-alt"></i>
-        <% end %>
-      </div>
-    </ul>
-  <% end %>
-
-  <%= link_to "Acrescentar um artigo", new_article_path, class: "btn btn-primary m-5" %>
-</div> -->
-
 <div id="map"
-  style="width: 100%; height: 750px;"
   data-markers="<%= @markers.to_json %>"
   data-country="<%= @countries %>"
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
