@@ -1,5 +1,5 @@
 .card {
-  box-shadow: 5px 5px 10px grey;
+  box-shadow: 5px 5px 10px darkgrey;
 }
 
 .card-footer {
@@ -19,11 +19,12 @@
 .card-footer p {
   margin: 0;
   line-height: 1.2;
-  margin-left: 10px;
+  margin-left: 15px;
+  color: $blue;
 }
 
 .card-footer small {
-  color: #999999;
+  color: $blue;
   font-weight: bold;
 }
 .card-footer .card-footer-actions {
@@ -37,7 +38,7 @@
 }
 
 .card-footer .card-footer-actions a {
-  color: #999999;
+  color: $blue;
   margin-left: 16px;
   font-size: 12px;
 }
