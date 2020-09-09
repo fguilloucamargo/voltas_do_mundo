@@ -4,14 +4,12 @@ class ArticlesController < ApplicationController
 
   def home
     @articles = Article.all
-    @countries = @articles.map do |article|
-      Geocoder.search(article.city).first.country
-    end
-    @countries.uniq!
+    @countries = []
+    @countries = @articles.map { |article| article.country unless @countries.include?(article.country)}
     @markers = @articles.map do |article|
       {
-        lat: article.geocode.first,
-        lng: article.geocode.last,
+        lat: article.latitude,
+        lng: article.longitude,
         infoWindow: render_to_string(partial: "infowindow", locals: { article: article })
       }
     end
@@ -29,6 +27,9 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.country = Geocoder.search(@article.city).first.country
+    @article.latitude = @article.geocode.first
+    @article.longitude = @article.geocode.last
     if @article.save!
       redirect_to article_path(@article)
     else
