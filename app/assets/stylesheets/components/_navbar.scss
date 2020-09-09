@@ -13,6 +13,7 @@
 .navbar h2 {
   color: $red;
   font-family: $headers-font;
+  margin-bottom: 0px;
 }
 
 .nav-item {
@@ -29,10 +30,18 @@
 
 @media(max-width: 768px) {
   .navbar h2 {
+    margin-top: 10px;
     font-size: 1em;
   }
 
   .dropdown-item {
     padding-right: 0px;
+  }
+
+  .nav-item a {
+    margin-top: 10px;
+    color: grey;
+    font-size: 0.8em;
+    padding: 0px;
   }
 }
