@@ -8,7 +8,7 @@
       <% @posts.each do |post| %>
         <% if post.photo.attached? && post.text == ""%>
           <div class="card">
-            <img class="card-img-top" src="<%= cl_image_path post.photo.key, :quality=>"auto:eco" %>" alt="Card image cap">
+            <img class="card-img-top" src="<%= cl_image_path post.photo.key, :quality=>"auto:low" %>" alt="Card image cap">
             <div class="card-footer">
               <%= cl_image_tag post.user.photo.key, gravity: "face", height: 50, width: 50, crop: "lfill", class: "avatar-large"%>
               <div class="notification-content">
@@ -52,7 +52,7 @@
           </div>
         <% else %>
           <div class="card">
-            <img class="card-img-top" src="<%= cl_image_path post.photo.key, :quality=>"auto:eco" %>" alt="Card image cap">
+            <img class="card-img-top" src="<%= cl_image_path post.photo.key, :quality=>"auto:low" %>" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title"><%= post.title %></h5>
               <p class="card-text"><%= post.text %></p>
