@@ -27,6 +27,7 @@
                 </div>
               <% end %>
             </div>
+          </div>
         <% elsif !post.photo.attached? %>
           <div class="card ">
             <blockquote class="blockquote mb-0 card-body">
@@ -52,7 +53,7 @@
           </div>
         <% else %>
           <div class="card">
-            <img class="card-img-top" src="<%= cl_image_path post.photo.key, :quality=>"auto:low" %>" alt="Card image cap">
+            <img class="card-img-top" src="<%= cl_image_path post.photo.key, :quality=>"auto:eco" %>" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title"><%= post.title %></h5>
               <p class="card-text"><%= post.text %></p>
@@ -79,9 +80,6 @@
         <% end %>
       <% end %>
     </div>
-  <% end %>
-  <% if user_signed_in? %>
-    <%= link_to "Adicionar um novo post", new_article_post_path(@article) %>
   <% end %>
 </div>
 
