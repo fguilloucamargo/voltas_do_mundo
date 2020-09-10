@@ -81,6 +81,9 @@
       <% end %>
     </div>
   <% end %>
+  <% if user_signed_in? %>
+    <%= link_to "Adicionar um novo post", new_article_post_path(@article) %>
+  <% end %>
 </div>
 
 
