@@ -3,7 +3,7 @@ import mapboxgl from 'mapbox-gl';
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
   var count = 0;
-  var colors = ['#A364D9', '#ED657B', '#DB3839', '#F66320', '#F9A229', '#FECC30', '#B2C324', '#34BEB7', '#3FA5D8']
+  var colors = ['#A364D9', '#ED657B', '#DB3839', '#F66320', '#F9A229', '#FECC30', '#B2C324', '#34BEB7', '#3FA5D8'];
 
   if (mapElement) {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -14,7 +14,12 @@ const initMapbox = () => {
         center: [0, 15],
         zoom: 1.2
       });
-      map.resize() ;
+
+//Resize the map to solve load problem in the size of canvas container height
+      map.on('load', function () {
+          map.resize();
+      });
+
       const markers = JSON.parse(mapElement.dataset.markers);
       markers.forEach((marker) => {
         const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
@@ -24,6 +29,7 @@ const initMapbox = () => {
         .addTo(map);
       });
 
+//Changing the country color if it has been visited
       fetch("https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson")
       .then(reponse => reponse.json())
       .then((data) => {
@@ -66,7 +72,12 @@ const initMapbox = () => {
         center: [-10, 10],
         zoom: 0
       });
-      map.resize();
+
+//Resize the map to solve load problem in the size of canvas container height
+      map.on('load', function () {
+          map.resize();
+      });
+
       const markers = JSON.parse(mapElement.dataset.markers);
       markers.forEach((marker) => {
         const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
@@ -75,6 +86,8 @@ const initMapbox = () => {
         .setPopup(popup)
         .addTo(map);
       });
+
+//Changing the country color if it has been visited
 
       fetch("https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson")
       .then(reponse => reponse.json())
